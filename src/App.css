@@ -1,38 +1,130 @@
 .App {
-  text-align: center;
+  background-color: black;
+  height: 100vh; /* 화면 전체 높이로 설정하여 가운데 정렬 */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+div.Header{
+  padding-top: 15px;
+  padding-bottom: 15px;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+div.Header p{
   color: white;
+  text-align: center;
+  margin-bottom: 5px; 
 }
 
-.App-link {
-  color: #61dafb;
+.logo {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 5px; 
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.logo:hover {
+  cursor : pointer;
+  margin-bottom: 5px; 
+}
+
+.contents {
+  display: flex;
+  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
+  height : 100vh;
+
+}
+
+.loginForm {
+  display: flex;
+  width: 300px;
+  height : 120px;
+  align-items: center; /* 수직 가운데 정렬 */
+  justify-content: center; /* 수평 가운데 정렬 */
+  flex-direction: column;
+  margin-top: 5px;
+  
+}
+.signUpForm {
+  display: flex;
+  width: 300px;
+  height : 120px;
+  align-items: center; /* 수직 가운데 정렬 */
+  justify-content: center; /* 수평 가운데 정렬 */
+  flex-direction: column;
+  margin-top: 5px;
+  
+}
+.loginForm div {
+  margin-bottom: 10px; /* 각 input 사이의 간격 조절 */
+}
+
+.signUpForm div {
+  margin-bottom: 10px; /* 각 input 사이의 간격 조절 */
+}
+
+.social_login_group{
+  display: flex;
+}
+
+.socialLoginLogo {
+  width : 40px;
+  margin: 15px;
+}
+
+.socialLoginLogo:hover {
+  cursor: pointer;
+}
+
+.loginBtn {
+  background-color: #007bff; /* 배경색 */
+  color: #fff; /* 텍스트 색상 */
+  border: none; /* 테두리 없음 */
+  padding: 10px 20px; /* 안쪽 여백 */
+  font-size: 16px; /* 폰트 크기 */
+  cursor: pointer; /* 포인터 커서 */
+  border-radius: 5px; /* 모서리 둥글게 */
+}
+
+/* 버튼에 호버 효과 */
+.loginBtn:hover {
+  background-color: #0056b3; /* 호버 시 배경색 변경 */
+}
+
+.loginForm input {
+  /* input 태그에 대한 스타일 지정 */
+  width: 220px;
+  height : 30px;
+  border-radius: 4px;
+  border: none; /* 테두리 없음 */
+  padding: 0; /* 안쪽 여백 없음 */
+  margin: 0; /* 마진 없음 */
+  outline: none; /* 포커스 시 테두리 제거 */
+}
+.signUpForm input {
+  /* input 태그에 대한 스타일 지정 */
+  width: 220px;
+  height : 30px;
+  border-radius: 4px;
+  border: none; /* 테두리 없음 */
+  padding: 0; /* 안쪽 여백 없음 */
+  margin: 0; /* 마진 없음 */
+  outline: none; /* 포커스 시 테두리 제거 */
+}
+
+.socialLoginLogo {
+  border-radius:  20px;
+}
+
+.loginBtnGrp{
+  display: inline-block;
+}
+
+.loginBtnGrp button {
+  margin : 12px;
+}
+
+
+.contents {
+  color : white;
 }
