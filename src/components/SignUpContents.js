@@ -4,48 +4,47 @@ import { useNavigate } from 'react-router-dom';
 function SignUpContents() {
     const navigator = useNavigate();
     // 각 입력값에 대한 상태를 정의합니다.
-    const [id, setId]             = useState('');
+    const [username, setUsername]             = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail]       = useState('');
     const [phone, setPhone]       = useState('');
-
+    const [signUpMessage, setSignUpMessage] = useState('');
     const handleSignUpClick = () => {
       const userData = {
-          id: id,
+          username: username,
           password: password,
           email: email,
           phone: phone
       };
   
-      fetch('http://localhost:8080/signup', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(userData)
-      })
+    fetch('http://localhost:8080/signup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+    })
+    .then(response => {
+        return response.json(); // JSON 데이터를 파싱하여 다음 .then 블록에 전달합니다.
+    })
+    .then(data => {
+        setSignUpMessage(data.message);
+        
+        console.log('서버로부터 받은 데이터:', data.message);
 
-      .then(response => {
-        if (!response.ok) {
-            throw new Error('서버 응답이 실패했습니다.'); // 예외 처리
+        if(data.message == "중복 된 아이디 입니다." || data.message == "이미 가입 된 이메일 주소입니다.") {
+            alert(data.message);
+        } else {
+            alert(data.message);
+            navigator("/");
         }
-        return response.text(); // 서버 응답의 문자열 데이터를 반환
     })
-    .then(successCode => {
-        console.log('서버로부터 받은 successCode 값:', successCode);
-        // 여기에서 successCode 값을 원하는 대로 처리할 수 있습니다.
-    })
-    //   .then(response => {
-    //     if(response.ok){
-    //         alert("가입 처리되었습니다.");
-    //         navigator("/");
-    //     } else {
-    //         alert(response.text().userData);
-    //     }
-    //   })
-      .catch(error => {
-          console.error("회원가입 오류:", error);
-      });
+    .catch(error => {
+        console.error("회원가입 오류:", error);
+        alert('회원가입 중 오류가 발생했습니다.');
+    });
+
+
   };
 
     const backClick = () => {
@@ -58,7 +57,7 @@ function SignUpContents() {
             <div className='signUpForm'>
                 <div>
                     <label htmlFor="id">아이디 : </label>
-                    <input className='signUpInputBox' type='text' id="id" name="id" value={id} onChange={(e) => setId(e.target.value)} />
+                    <input className='signUpInputBox' type='text' id="username" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
                 </div>
                 <div>
                     <label htmlFor="password">비밀번호 : </label>

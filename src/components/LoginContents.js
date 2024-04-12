@@ -1,5 +1,5 @@
-// import { BrowserRouter as Router } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 function LoginContents() {
     
 
@@ -8,11 +8,49 @@ function LoginContents() {
 
   const navigator = useNavigate();
 
-  const kakaoPageCallAddresss = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`
-    const handleLoginClick = () => {
-       alert("로그인 버튼 선택");
+  const [username, setUsername]             = useState('');
+  const [password, setPassword] = useState('');
+  const [token, setToken] = useState(''); 
 
-    };
+  const userData = {
+    username: username,
+    password: password
+};
+
+
+  const kakaoPageCallAddresss = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`
+  
+  const handleLoginClick = () => {
+    const userData = { username, password };
+  
+    fetch('http://localhost:8080/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userData)
+    })
+      .then(response => {
+        console.log(response.headers);
+        const authorizationHeader = response.headers.get('Authorization');
+        if (authorizationHeader) {
+          const token = authorizationHeader.split(' ')[1]; // "Bearer {token}" 형식이므로 띄어쓰기를 기준으로 나누고 두 번째 요소를 선택
+          console.log('Token:', token);
+          // 토큰 값을 로컬 스토리지에 저장
+          localStorage.setItem('token', token);
+          console.log('Token saved to localStorage.');
+          
+          navigator("mediaMain");
+        } else {
+          console.error('Authorization header not found in response');
+        }
+      })
+      .catch(error => {
+        console.error("로그인 오류:", error);
+        alert('로그인 중 오류가 발생했습니다.');
+      });
+  };
+  
 
     const handleSignUpClick = () => {
       navigator("signUp");
@@ -21,8 +59,8 @@ function LoginContents() {
     return(
       <div className='contents'>
         <div className='loginForm'>
-          <div><input className='loginInputBox'type='text'></input></div>
-          <div><input className='loginInputBox'type='password'></input></div>
+          <div><input className='loginInputBox'type='text' id="username" name="username" value={username} onChange={(e) => setUsername(e.target.value)}></input></div>
+          <div><input className='loginInputBox'type='password' id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}></input></div>
           <div className="loginBtnGrp">
             <button className='loginBtn' onClick={handleLoginClick}>로그인</button>
             <button className='loginBtn' onClick={handleSignUpClick}>회원가입</button>
