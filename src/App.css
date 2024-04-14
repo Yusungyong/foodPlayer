@@ -1,20 +1,45 @@
 .App {
-  background-color: black;
+  background-image: url('../public/images/background_image.jpg'); /* 이미지 경로 설정 */
+  background-size: cover; /* 이미지를 컨테이너에 맞게 조정 */
+  background-position: center; /* 이미지를 가운데 정렬 */
+  
   height: 100vh; /* 화면 전체 높이로 설정하여 가운데 정렬 */
 }
-
-
-div.Header{
-  padding-top: 15px;
-  padding-bottom: 15px;
-  justify-content: center;
+*{
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-div.Header p{
+div.Header{
+  display: flex;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  justify-content: space-between;
+}
+
+div.Header p.logo {
   color: white;
   text-align: center;
   margin-bottom: 5px; 
+  
 }
+
+.username li {
+  display: none;
+  font-size: 12px;
+  background-color: rgba(0, 0, 0, 0.7);
+  text-align: right;
+  padding: 1px;
+  color: white;
+  width: 60px;
+}
+
+.username li:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+
+}
+
 
 .logo {
   font-size: 24px;
@@ -25,14 +50,6 @@ div.Header p{
 .logo:hover {
   cursor : pointer;
   margin-bottom: 5px; 
-}
-
-.contents {
-  display: flex;
-  justify-content: center; /* 수평 가운데 정렬 */
-  align-items: center; /* 수직 가운데 정렬 */
-  height : 100vh;
-
 }
 
 .loginForm {
@@ -127,4 +144,71 @@ div.Header p{
 
 .contents {
   color : white;
+}
+
+.profile {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  padding: 8px;
+  border-radius: 25px;
+  align-items: center;
+  display: flex; /* 수평 가운데 정렬을 위해 추가 */
+  justify-content: center; /* 수평 가운데 정렬을 위해 추가 */
+  text-align: center; /* 이 부분은 제거해야 합니다. */
+  margin-right: 8px;
+}
+
+.profile ul {
+  color: black;
+  font-size: 24px;
+  font-weight: 800;
+  /* text-align: center; */ /* 이 부분은 제거해야 합니다. */
+}
+
+
+
+.profile :hover li{
+  cursor: pointer;
+  display: block;
+}
+
+
+.mobile-video-player {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.phone-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.phone {
+  width: 370px;
+  height: 650px;
+  background-color: black;
+  border-radius: 40px;
+  overflow: hidden;
+}
+
+.screen {
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+.video {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
 }

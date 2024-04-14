@@ -35,7 +35,6 @@ function LoginContents() {
         const authorizationHeader = response.headers.get('Authorization');
         if (authorizationHeader) {
           const token = authorizationHeader.split(' ')[1]; // "Bearer {token}" 형식이므로 띄어쓰기를 기준으로 나누고 두 번째 요소를 선택
-          console.log('Token:', token);
           // 토큰 값을 로컬 스토리지에 저장
           localStorage.setItem('token', token);
           console.log('Token saved to localStorage.');
@@ -60,7 +59,13 @@ function LoginContents() {
       <div className='contents'>
         <div className='loginForm'>
           <div><input className='loginInputBox'type='text' id="username" name="username" value={username} onChange={(e) => setUsername(e.target.value)}></input></div>
-          <div><input className='loginInputBox'type='password' id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}></input></div>
+          <div><input className='loginInputBox'type='password' id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
+              handleLoginClick();
+            }
+          }}
+          ></input></div>
           <div className="loginBtnGrp">
             <button className='loginBtn' onClick={handleLoginClick}>로그인</button>
             <button className='loginBtn' onClick={handleSignUpClick}>회원가입</button>
