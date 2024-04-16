@@ -11,6 +11,10 @@
   margin: 0;
 }
 
+input { 
+  padding-left: 5px; 
+}
+
 div.Header{
   display: flex;
   padding-top: 15px;
@@ -114,7 +118,6 @@ div.Header p.logo {
   height : 30px;
   border-radius: 4px;
   border: none; /* 테두리 없음 */
-  padding: 0; /* 안쪽 여백 없음 */
   margin: 0; /* 마진 없음 */
   outline: none; /* 포커스 시 테두리 제거 */
 }
@@ -124,7 +127,6 @@ div.Header p.logo {
   height : 30px;
   border-radius: 4px;
   border: none; /* 테두리 없음 */
-  padding: 0; /* 안쪽 여백 없음 */
   margin: 0; /* 마진 없음 */
   outline: none; /* 포커스 시 테두리 제거 */
 }
@@ -144,6 +146,12 @@ div.Header p.logo {
 
 .contents {
   color : white;
+  height : 90vh;
+  display: flex; /* 수평 가운데 정렬을 위해 추가 */
+  justify-content: center; /* 수평 가운데 정렬을 위해 추가 */
+  align-items: center;
+  text-align: center; /* 이 부분은 제거해야 합니다. */
+  margin-right: 24px;
 }
 
 .profile {
@@ -165,8 +173,6 @@ div.Header p.logo {
   font-weight: 800;
   /* text-align: center; */ /* 이 부분은 제거해야 합니다. */
 }
-
-
 
 .profile :hover li{
   cursor: pointer;
@@ -211,4 +217,62 @@ div.Header p.logo {
   display: flex;
   justify-content: space-around;
   padding: 20px;
+}
+
+.fileUploadContents{
+  color : white;
+  height : 90vh;
+  display: flex; /* 수평 가운데 정렬을 위해 추가 */
+  justify-content: center; /* 수평 가운데 정렬을 위해 추가 */
+  align-items: start;
+  text-align: center; /* 이 부분은 제거해야 합니다. */
+  margin-right: 24px;
+  margin-top: 110px;
+  }
+
+
+.fileUploadContents div{
+  margin: 8px;
+}
+
+.fileUploadInputGrp {
+  
+}
+
+.fileUploadContents input {
+  /* input 태그에 대한 스타일 지정 */
+  width: 220px;
+  height : 30px;
+  border-radius: 4px;
+  border: none; /* 테두리 없음 */
+  margin: 0; /* 마진 없음 */
+  outline: none; /* 포커스 시 테두리 제거 */
+}
+
+
+.preview-video {  
+  border-radius: 12px;
+}
+
+
+.fileUploadSubmitBtn{
+  text-align: right;
+}
+
+.fileUploadSubmitBtn button {
+  padding: 8px;
+  border-radius: 12px;
+  text-decoration: none;
+  border: none;
+  background-color: rgb(184, 197, 255);
+}
+
+
+.fileUploadSubmitBtn button :hover {
+  cursor: pointer;
+}
+
+.moveFileUploadPage { 
+  display: flex;
+  justify-content: center; 
 }

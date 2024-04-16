@@ -7,6 +7,10 @@ function Header() {
         navigate('/');
     };
 
+    const handleMoveFileUploadPage = () => {
+        navigate('/FileUpload');
+    }
+
     return (
         <div className='Header'>
             <div>logo</div>
@@ -15,9 +19,9 @@ function Header() {
                 <div className="profile">
                     <ul className='username'> {username}
                         <li>회원정보</li>
-                        <li>얍</li>
+                        <li><button onClick={handleMoveFileUploadPage}>File Upload</button></li>
                         <li>로그아웃</li>
-                    </ul>
+                    </ul>   
                 </div>
             )}
         </div>

@@ -56,20 +56,20 @@ function SignUpContents() {
         <div className='contents'>
             <div className='signUpForm'>
                 <div>
-                    <label htmlFor="id">아이디 : </label>
-                    <input className='signUpInputBox' type='text' id="username" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    <label htmlFor="id"></label>
+                    <input className='signUpInputBox' type='text' id="username" name="username" placeholder='아이디를 입력해주세요.' value={username} onChange={(e) => setUsername(e.target.value)} />
                 </div>
                 <div>
-                    <label htmlFor="password">비밀번호 : </label>
-                    <input className='signUpInputBox' type='password' id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <label htmlFor="password"></label>
+                    <input className='signUpInputBox' type='password' id="password" name="password" placeholder='비밀번호를 입력해주세요.' value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 <div>
-                    <label htmlFor="email">이메일 : </label>
-                    <input type="email" id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />   
+                    <label htmlFor="email"></label>
+                    <input type="email" id="email" name="email" placeholder='이메일주소를 입력해주세요.' value={email} onChange={(e) => setEmail(e.target.value)} />   
                 </div>
                 <div>
-                    <label htmlFor="phone">핸드폰 : </label>
-                    <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3,4}-[0-9]{4}" placeholder="010-1234-5678" value={phone} onChange={(e) => setPhone(e.target.value)} />
+                    <label htmlFor="phone"></label>
+                    <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3,4}-[0-9]{4}" placeholder="핸드폰 번호를 입력해주세요(숫자만)" value={phone} onChange={(e) => setPhone(e.target.value)} />
                 </div>
                 <div className="loginBtnGrp">
                     <button className='loginBtn' onClick={handleSignUpClick}>가입요청</button>

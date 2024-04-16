@@ -58,8 +58,8 @@ function LoginContents() {
     return(
       <div className='contents'>
         <div className='loginForm'>
-          <div><input className='loginInputBox'type='text' id="username" name="username" value={username} onChange={(e) => setUsername(e.target.value)}></input></div>
-          <div><input className='loginInputBox'type='password' id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}
+          <div><input className='loginInputBox'type='text' id="username" name="username" placeholder='아이디를 입력해주세요.' value={username} onChange={(e) => setUsername(e.target.value)}></input></div>
+          <div><input className='loginInputBox'type='password' id="password" name="password" placeholder='비밀번호를 입력해주세요.' value={password} onChange={(e) => setPassword(e.target.value)}
           onKeyPress={(e) => {
             if (e.key === 'Enter') {
               handleLoginClick();

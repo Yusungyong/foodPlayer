@@ -1,11 +1,11 @@
 import React, { useState, useRef } from 'react';
 
 
-
 function MainMediaContents() {
 
     const accessToken = localStorage.getItem("token");
     const [username, setUsername] = useState('');
+    const navigate = useNavigate();
     // fetch 함수를 사용하여 API 호출
     fetch('http://localhost:8080/test2', {
         method: 'POST',
@@ -21,7 +21,6 @@ function MainMediaContents() {
     .then(data => {
         console.log("data : ",data)
         localStorage.setItem("username", data.username.slice(0, 3));
-        // alert(localStorage.getItem(""))
         setUsername(localStorage.getItem("username"))
     }) // 응답 데이터 출력
     .catch(error => console.error('Error:', error)); // 에러 핸들링
@@ -29,23 +28,13 @@ function MainMediaContents() {
 
     const videoRef = useRef(null);
 
-    const handlePlay = () => {
-      videoRef.current.play();
-    };
-  
-    const handlePause = () => {
-      videoRef.current.pause();
-    };
-  
-    const handleStop = () => {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
-    };
 
     const handleDoubleClick = (event) => {
         // 더블클릭 이벤트를 처리하지 않도록 설정
         event.preventDefault();
     };
+
+
 
     return (
         <div className="mobile-video-player">
