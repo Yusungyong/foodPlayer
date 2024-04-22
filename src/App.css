@@ -3,7 +3,7 @@
   background-size: cover; /* 이미지를 컨테이너에 맞게 조정 */
   background-position: center; /* 이미지를 가운데 정렬 */
   
-  height: 100vh; /* 화면 전체 높이로 설정하여 가운데 정렬 */
+  height: 110vh; /* 화면 전체 높이로 설정하여 가운데 정렬 */
 }
 *{
   list-style: none;
@@ -155,9 +155,21 @@ div.Header p.logo {
 }
 
 .profile {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   background-color: white;
+  padding: 8px;
+  border-radius: 25px;
+  align-items: center;
+  display: flex; /* 수평 가운데 정렬을 위해 추가 */
+  justify-content: center; /* 수평 가운데 정렬을 위해 추가 */
+  text-align: center; /* 이 부분은 제거해야 합니다. */
+  margin-right: 8px;
+}
+
+.noProfile {
+  width: 30px;
+  height: 30px;
   padding: 8px;
   border-radius: 25px;
   align-items: center;

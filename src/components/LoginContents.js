@@ -8,15 +8,8 @@ function LoginContents() {
 
   const navigator = useNavigate();
 
-  const [username, setUsername]             = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [token, setToken] = useState(''); 
-
-  const userData = {
-    username: username,
-    password: password
-};
-
 
   const kakaoPageCallAddresss = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`
   
@@ -31,16 +24,16 @@ function LoginContents() {
       body: JSON.stringify(userData)
     })
       .then(response => {
-        console.log(response.headers);
+        console.log(response.headers.get('Authorization'));
         const authorizationHeader = response.headers.get('Authorization');
         if (authorizationHeader) {
-          const token = authorizationHeader.split(' ')[1]; // "Bearer {token}" 형식이므로 띄어쓰기를 기준으로 나누고 두 번째 요소를 선택
-          // 토큰 값을 로컬 스토리지에 저장
-          localStorage.setItem('token', token);
-          console.log('Token saved to localStorage.');
+          // 토큰 값을 로컬 스토리지에 저장 
+          localStorage.setItem('token', authorizationHeader.split(' ')[1]);
+          console.log('Token saved to localStorage.', localStorage.getItem('token'));
           
-          navigator("mediaMain");
+          navigator("/mediaMain");
         } else {
+          alert("회원 정보를 확인해주세요.");
           console.error('Authorization header not found in response');
         }
       })

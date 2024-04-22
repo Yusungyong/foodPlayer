@@ -25,7 +25,7 @@ function SignUpContents() {
         body: JSON.stringify(userData)
     })
     .then(response => {
-        return response.json(); // JSON 데이터를 파싱하여 다음 .then 블록에 전달합니다.
+        return response.text(); // JSON 데이터를 파싱하여 다음 .then 블록에 전달합니다.
     })
     .then(data => {
         setSignUpMessage(data.message);
