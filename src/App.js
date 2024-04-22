@@ -30,7 +30,7 @@ function App() {
             path="/mediaMain"
             element={<MainMediaContents setUsername={setUsername} />}
           />
-          <Route path="/FileUpload" element={<FileUpload />} />
+          <Route path="/FileUpload" element={<FileUpload setUsername={setUsername}/>} />
         </Routes>
       </Router>
     </div>

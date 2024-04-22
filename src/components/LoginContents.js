@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
-function LoginContents() {
+function LoginContents() { 
+  localStorage.setItem("loginSts", false);
     
 
   const REST_API_KEY = process.env.REACT_APP_RESTAPI_KEY;   // 카카오 개발자 사이트에서 받은 REST_API_KEY
@@ -30,7 +31,7 @@ function LoginContents() {
           // 토큰 값을 로컬 스토리지에 저장 
           localStorage.setItem('token', authorizationHeader.split(' ')[1]);
           console.log('Token saved to localStorage.', localStorage.getItem('token'));
-          
+          localStorage.setItem("loginSts", true);
           navigator("/mediaMain");
         } else {
           alert("회원 정보를 확인해주세요.");

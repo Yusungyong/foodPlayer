@@ -19,6 +19,7 @@ function MainMediaContents({ setUsername }) {
         if (!response.ok) {
           localStorage.removeItem("token");
           localStorage.removeItem("username");
+          localStorage.setItem("loginSts", false);
           alert("로그인 기간이 만료되었습니다.");
           navigate("/");
         } else {

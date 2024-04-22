@@ -3,6 +3,13 @@ import React, { useState, useEffect } from 'react';
 
 function Header({ username }) {
     const navigate = useNavigate();
+    const [loginState, setLoginState] = useState(localStorage.getItem("loginSts")); // 초기값을 false로 설정
+
+    // username이 변경될 때마다 loginState를 업데이트
+    useEffect(() => {
+        setLoginState(username != null);
+    }, [username]);
+
     // 페이지 리셋 함수
     const pageReset = () => {
         if (localStorage.getItem("token")) {
@@ -11,7 +18,7 @@ function Header({ username }) {
             navigate('/');
         }
     };
-
+    
     // 파일 업로드 페이지로 이동하는 함수
     const handleMoveFileUploadPage = () => {
         navigate('/FileUpload');
@@ -25,6 +32,9 @@ function Header({ username }) {
             localStorage.removeItem("username");
             
             alert("이용해주셔서 감사합니다.");
+            // 로그인 상태 변경
+            localStorage.setItem("loginSts", false);
+            setLoginState(false);
             // 로그인 페이지로 리다이렉트
             navigate('/');
         }
@@ -34,7 +44,7 @@ function Header({ username }) {
         <div className='Header'>
             <div>logo</div>
             <p className='logo' onClick={pageReset}>FoodPlayer</p>
-            {username && ( // username이 존재하는 경우
+            {(loginState) ? (
                 <div className="profile">
                     <ul className='username'>{username}
                         <li>회원정보</li>
@@ -42,8 +52,7 @@ function Header({ username }) {
                         <li onClick={handleUserLogout}>로그아웃</li>
                     </ul>   
                 </div>
-            )}
-            {!username && (
+            ) : (
                 <div className="noProfile">
                     <ul className='username'></ul>
                 </div>
