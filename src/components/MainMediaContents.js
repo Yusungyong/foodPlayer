@@ -1,33 +1,20 @@
-// MainMediaContents.js
-import { useNavigate } from 'react-router-dom';
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-function MainMediaContents({ setUsername }) {
-  const navigate = useNavigate();
+
+function MainMediaContents() {
   const accessToken = localStorage.getItem("token");
-
+  const dispatch = useDispatch();
+  const navigator = useNavigate();
+  let apiUrl = process.env.REACT_APP_PROD_API_URL;
+  console.log("MainMediaContents : " , apiUrl);
+  // alert(accessToken);
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:8080/test2', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`
-          }
-        });
-        if (!response.ok) {
-          localStorage.removeItem("token");
-          localStorage.removeItem("username");
-          localStorage.setItem("loginSts", false);
-          alert("로그인 기간이 만료되었습니다.");
-          navigate("/");
-        } else {
-          const data = await response.json();
-          localStorage.setItem("username", data.username);
-          setUsername(data.username); // setUsername을 호출하여 username을 변경
+
           try {
-            const response = await fetch('http://localhost:8080/localFileUpload', {
+            const response = await fetch(`${apiUrl}/localFileUpload`, {
               method: 'GET',
               headers: {
                 'Authorization': `Bearer ${accessToken}`,
@@ -35,6 +22,11 @@ function MainMediaContents({ setUsername }) {
               }
             });
             if (!response.ok) {
+              localStorage.removeItem("token");
+              localStorage.removeItem("username");
+              alert("토큰이 만료되어 로그아웃 되었습니다.");
+              dispatch(getLoginFailed());
+              navigator("/");
               throw new Error('Network response was not ok');
             }
             const data = await response.blob();
@@ -47,14 +39,10 @@ function MainMediaContents({ setUsername }) {
           } catch (error) {
             console.error('There was a problem with the fetch operation:', error);
           }
-        }
-      } catch (error) {
-        console.error('Error:', error);
-      }
     };
 
     fetchData(); // 컴포넌트가 마운트될 때 한 번만 API 요청 수행
-  }, [navigate, setUsername, accessToken]);
+  }, [accessToken]);
 
   return (
     <div className="mobile-video-player">

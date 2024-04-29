@@ -2,7 +2,7 @@
   background-image: url('../public/images/background_image.jpg'); /* 이미지 경로 설정 */
   background-size: cover; /* 이미지를 컨테이너에 맞게 조정 */
   background-position: center; /* 이미지를 가운데 정렬 */
-  
+  width: auto;
   height: 110vh; /* 화면 전체 높이로 설정하여 가운데 정렬 */
 }
 *{
@@ -287,4 +287,11 @@ div.Header p.logo {
 .moveFileUploadPage { 
   display: flex;
   justify-content: center; 
+}
+
+.redirectPage {
+  color: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
 }

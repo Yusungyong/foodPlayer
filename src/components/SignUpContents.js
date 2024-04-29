@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 function SignUpContents() {
     const navigator = useNavigate();
+    let apiUrl = process.env.REACT_APP_PROD_API_URL;
+
     // 각 입력값에 대한 상태를 정의합니다.
     const [username, setUsername]             = useState('');
     const [password, setPassword] = useState('');
@@ -17,7 +19,7 @@ function SignUpContents() {
           phone: phone
       };
   
-    fetch('http://localhost:8080/signup', {
+    fetch(`${apiUrl}/signup`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 function FileUpload() {
-
+    console.log("FileUpload : " , localStorage.getItem('token'));
+    const navigator = useNavigate();
     const formData = new FormData();
-
-
+    let apiUrl = process.env.REACT_APP_PROD_API_URL;
+    const accessToken = localStorage.getItem('token');
+    // alert(accessToken);
     const [videoFile, setVideoFile] = useState('');
     const [formVideo, setFormVideo] = useState('');
     const [address, setAddress] = useState('');
@@ -25,6 +27,7 @@ function FileUpload() {
     };
 
     const handleSubmit = () => {
+        console.log('accessToken : ' , accessToken);
         console.log('videoFile :    ', videoFile);
         console.log('videoTitle :   ', videoTitle);
         console.log('address :   ', address);
@@ -42,9 +45,9 @@ function FileUpload() {
         } 
         formData.append("file", formVideo);
         formData.append("fileVO", JSON.stringify(uploadFileInfo));
-        const accessToken = localStorage.getItem("token");
+        
         // 여기에 fetch API를 사용하여 서버로 데이터를 전송하는 코드를 작성합니다.
-        fetch('http://localhost:8080/file-upload', {
+        fetch(`${apiUrl}/file-upload`, {
             method: 'POST',
             body: formData,
             headers: {
@@ -57,6 +60,7 @@ function FileUpload() {
         })
         .then(data => {
             console.log('Server response:', data);
+            navigator("/mediaMain");
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);

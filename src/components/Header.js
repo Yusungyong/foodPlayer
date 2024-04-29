@@ -1,14 +1,26 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import loginStateSlice, { getLoginFailed, getLoginSuccess } from '../redux/authReducer';
 
-function Header({ username }) {
+function Header() {
     const navigate = useNavigate();
-    const [loginState, setLoginState] = useState(localStorage.getItem("loginSts")); // 초기값을 false로 설정
+    const isLoggedIn = useSelector(state => state.login.isLoggedIn);
+    const [username, setUsername] = useState(localStorage.getItem('username'));
+    const dispatch = useDispatch();
+    // alert("username : " + username);
+    // alert("isLoggedIn : " + isLoggedIn);
 
-    // username이 변경될 때마다 loginState를 업데이트
+    // useEffect를 사용하여 isLoggedIn 상태가 변경될 때마다 username 업데이트
     useEffect(() => {
-        setLoginState(username != null);
-    }, [username]);
+        if (isLoggedIn) {
+
+            setUsername(localStorage.getItem('username'));
+        } else {
+
+            setUsername(null);
+        }
+    }, [isLoggedIn]);
 
     // 페이지 리셋 함수
     const pageReset = () => {
@@ -27,14 +39,12 @@ function Header({ username }) {
     // 사용자 로그아웃 함수
     const handleUserLogout = () => {
         if (window.confirm("로그아웃 하시겠습니까?")) {
+
             // 클라이언트 상태 초기화
             localStorage.removeItem("token");
             localStorage.removeItem("username");
-            
+            dispatch(getLoginFailed());
             alert("이용해주셔서 감사합니다.");
-            // 로그인 상태 변경
-            localStorage.setItem("loginSts", false);
-            setLoginState(false);
             // 로그인 페이지로 리다이렉트
             navigate('/');
         }
@@ -44,7 +54,7 @@ function Header({ username }) {
         <div className='Header'>
             <div>logo</div>
             <p className='logo' onClick={pageReset}>FoodPlayer</p>
-            {(loginState) ? (
+            {(isLoggedIn) ? (
                 <div className="profile">
                     <ul className='username'>{username}
                         <li>회원정보</li>
