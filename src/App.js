@@ -8,6 +8,7 @@ import SignUpContents from './components/SignUpContents';
 import MainMediaContents from './components/MainMediaContents';
 import FileUpload from './components/FileUpload';
 import RedirectPage from './components/RedirectPage';
+import UserInfo from './components/UserInfo';
 
 function App() {
   console.log("App : " , localStorage.getItem('token'));
@@ -21,6 +22,7 @@ function App() {
           <Route path="/mediaMain" element={<MainMediaContents  />} />
           <Route path="/FileUpload" element={<FileUpload />} />
           <Route path="/RedirectPage" element={<RedirectPage />} />
+          <Route path="/UserInfo" element={<UserInfo />} />
         </Routes>
       </Router>
     </div>

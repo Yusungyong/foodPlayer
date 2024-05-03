@@ -50,24 +50,29 @@ function Header() {
         }
     };
 
+    const handleUserInfo = () => {
+        navigate('/UserInfo');
+    }
+
     return (
-        <div className='Header'>
-            <div>logo</div>
-            <p className='logo' onClick={pageReset}>FoodPlayer</p>
-            {(isLoggedIn) ? (
-                <div className="profile">
-                    <ul className='username'>{username}
-                        <li>회원정보</li>
-                        <li><button onClick={handleMoveFileUploadPage}>File Upload</button></li>
-                        <li onClick={handleUserLogout}>로그아웃</li>
-                    </ul>   
+        <div>
+            <div className='Header'>
+                <p className='logo' onClick={pageReset}>FoodPlayer</p>
+            </div>
+                <div className='navbar'>
+                    {(isLoggedIn) ? (
+                            <ul className='username'>
+                                <li onClick={pageReset}>View</li>
+                                <li onClick={handleMoveFileUploadPage}>File Upload</li>
+                                <li onClick={handleUserLogout}>로그아웃</li>
+                                <li onClick={handleUserInfo}>회원정보</li>
+                            </ul>   
+                    ) : (
+                            <ul className='username'></ul>
+                    )}
                 </div>
-            ) : (
-                <div className="noProfile">
-                    <ul className='username'></ul>
-                </div>
-            )}
         </div>
+
     );
 }
 

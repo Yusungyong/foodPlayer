@@ -16,10 +16,8 @@ input {
 }
 
 div.Header{
-  display: flex;
   padding-top: 15px;
   padding-bottom: 15px;
-  justify-content: space-between;
 }
 
 div.Header p.logo {
@@ -28,22 +26,6 @@ div.Header p.logo {
   margin-bottom: 5px; 
   
 }
-
-.username li {
-  display: none;
-  font-size: 12px;
-  background-color: rgba(0, 0, 0, 0.7);
-  text-align: right;
-  padding: 1px;
-  color: white;
-  width: 60px;
-}
-
-.username li:hover {
-  background-color: rgba(0, 0, 0, 0.5);
-
-}
-
 
 .logo {
   font-size: 24px;
@@ -54,6 +36,24 @@ div.Header p.logo {
 .logo:hover {
   cursor : pointer;
   margin-bottom: 5px; 
+}
+
+
+.navbar ul {
+  display: flex;
+  justify-content: center; /* 변경 */
+  
+  text-align: center;
+  align-items: center;
+}
+
+.username {
+  text-align: center;
+}
+.username li {
+  padding: 8px;
+  color: white;
+  margin: 8px;
 }
 
 .loginForm {
@@ -154,42 +154,6 @@ div.Header p.logo {
   margin-right: 24px;
 }
 
-.profile {
-  width: 30px;
-  height: 30px;
-  background-color: white;
-  padding: 8px;
-  border-radius: 25px;
-  align-items: center;
-  display: flex; /* 수평 가운데 정렬을 위해 추가 */
-  justify-content: center; /* 수평 가운데 정렬을 위해 추가 */
-  text-align: center; /* 이 부분은 제거해야 합니다. */
-  margin-right: 8px;
-}
-
-.noProfile {
-  width: 30px;
-  height: 30px;
-  padding: 8px;
-  border-radius: 25px;
-  align-items: center;
-  display: flex; /* 수평 가운데 정렬을 위해 추가 */
-  justify-content: center; /* 수평 가운데 정렬을 위해 추가 */
-  text-align: center; /* 이 부분은 제거해야 합니다. */
-  margin-right: 8px;
-}
-
-.profile ul {
-  color: black;
-  font-size: 24px;
-  font-weight: 800;
-  /* text-align: center; */ /* 이 부분은 제거해야 합니다. */
-}
-
-.profile :hover li{
-  cursor: pointer;
-  display: block;
-}
 
 
 .mobile-video-player {
@@ -225,6 +189,28 @@ div.Header p.logo {
   object-fit: cover;
 }
 
+.screenInfo {
+  width: 300px;
+  height: 650px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 40px;
+}
+.screenInfo ul{
+  margin: 16px;
+}
+
+.screenInfo li{
+  height: 40px;
+  padding-top: 5px;
+  border-bottom: solid black 1px;
+  
+}
+
+.screenInfo ul li:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+}
+
 .buttons {
   display: flex;
   justify-content: space-around;
@@ -247,9 +233,6 @@ div.Header p.logo {
   margin: 8px;
 }
 
-.fileUploadInputGrp {
-  
-}
 
 .fileUploadContents input {
   /* input 태그에 대한 스타일 지정 */
@@ -294,4 +277,44 @@ div.Header p.logo {
   text-align: center;
   display: flex;
   justify-content: center;
+}
+
+
+
+
+
+.userInfo{
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+
+
+.userInfo p {
+  text-align: left;
+  color: white;
+}
+
+
+
+li img{
+  margin: 1px;
+  width: 40px;
+  height: 40px;
+}
+
+
+
+/* 모바일 화면에 대한 스타일 */
+@media (max-width: 768px) {
+
+
+.preview-video {
+  display: none;
+}
+
 }

@@ -13,13 +13,6 @@ function LoginContents() {
 
   let apiUrl = process.env.REACT_APP_PROD_API_URL;
 
-  // if (process.env.NODE_ENV === 'production') {
-  //   apiUrl = process.env.REACT_APP_LOCAL_API_URL;
-  // } else {
-  //   apiUrl = process.env.REACT_APP_PROD_API_URL;
-  // }
-
-
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [accessToken, setAccessToken] = useState('');
