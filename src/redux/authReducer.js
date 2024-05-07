@@ -16,10 +16,10 @@ const loginStateSlice = createSlice({
 
     getLoginFailed(state, action) {
       state.isLoggedIn = false; // 로그인 실패 시 isLoggedIn을 false로 설정
-    },
+    }
   }
 });
 
 // 리듀서와 액션 생성 함수를 내보냄
-export const { getLoginSuccess, getLoginFailed } = loginStateSlice.actions;
+export const { getLoginSuccess, getLoginFailed, setParameterId } = loginStateSlice.actions;
 export default loginStateSlice.reducer;

@@ -30,14 +30,14 @@ function SignUpContents() {
         return response.text(); // JSON 데이터를 파싱하여 다음 .then 블록에 전달합니다.
     })
     .then(data => {
-        setSignUpMessage(data.message);
+        setSignUpMessage(data);
         
-        console.log('서버로부터 받은 데이터:', data.message);
+        console.log('서버로부터 받은 데이터:', data);
 
-        if(data.message == "중복 된 아이디 입니다." || data.message == "이미 가입 된 이메일 주소입니다.") {
-            alert(data.message);
+        if(data == "중복 된 아이디 입니다." || data == "이미 가입 된 이메일 주소입니다.") {
+            alert(data);
         } else {
-            alert(data.message);
+            alert(data);
             navigator("/");
         }
     })

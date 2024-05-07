@@ -9,6 +9,8 @@ import MainMediaContents from './components/MainMediaContents';
 import FileUpload from './components/FileUpload';
 import RedirectPage from './components/RedirectPage';
 import UserInfo from './components/UserInfo';
+import FileList from './components/FileList';
+import FileDetail from './components/FileDetail';
 
 function App() {
   console.log("App : " , localStorage.getItem('token'));
@@ -23,6 +25,8 @@ function App() {
           <Route path="/FileUpload" element={<FileUpload />} />
           <Route path="/RedirectPage" element={<RedirectPage />} />
           <Route path="/UserInfo" element={<UserInfo />} />
+          <Route path="/FileList" element={<FileList />} />
+          <Route path="/FileDetail/:fileId" element={<FileDetail />} />
         </Routes>
       </Router>
     </div>

@@ -26,12 +26,41 @@ function ScreenInfo({ onItemSelect }) {
       }
     })
     .then(data => {
-      setFileInfo(data.map((item, index) => ({
-        fileId: item.id,
-        address: item.address,
-        videoTitle: item.videoTitle
-      })));
-      console.log(data);
+      if(fileInfo.length === 0){
+        setFileInfo(data);
+        console.log(data);
+        data.forEach(item => {
+          fetch(`${apiUrl}/images?fileId=${item.id}`,{
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${accessToken}`
+            }
+          }).then(response => {
+            if (response.ok) {
+              return response.blob(); 
+            } else {
+              console.error('Failed to fetch images:', response.status);
+              return null;
+            }
+          })
+          .then(blob => {
+            if (blob) {
+              const imageUrl = URL.createObjectURL(blob);
+              const img = document.createElement('img');
+              img.src = imageUrl;
+              const listItem = document.getElementById(`li-${item.id}`);
+              if (listItem) {
+                listItem.querySelector('div').append(img);
+              }
+            }
+          })
+          .catch(error => {
+            console.error('Error fetching images:', error);
+          });
+        });
+      }
+
     })
   }, [accessToken, apiUrl]);
 
@@ -42,17 +71,14 @@ function ScreenInfo({ onItemSelect }) {
 
   return (
     <div className='screenInfo'>
-      <ul>
+      <ul className='fileInfo'>
         {fileInfo.length > 0 ? 
           fileInfo.map((item, index) => (
-            <li key={index} onClick={() => handleItemClick(item.fileId)}>
+            <li key={item.id} id={`li-${item.id}`} onClick={() => handleItemClick(item.id)}>
               <div>
-                {/* <img src='../images/google_logo.png'></img> */}
               </div>
               <div>
                 <p>{item.videoTitle}</p>
-              </div>
-              <div>
                 <p>{item.address}</p>
               </div>
             </li>
