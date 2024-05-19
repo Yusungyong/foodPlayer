@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import ScreenInfo from '../components/ScreenInfo';
 import MenuInfo from '../components/MenuInfo';
 
 function MainMediaContents() {
   const accessToken = localStorage.getItem("token");
-  const dispatch = useDispatch();
-  const navigator = useNavigate();
   const [parameterId, setParameterId] = useState('');
   let apiUrl = process.env.REACT_APP_PROD_API_URL;
   console.log("MainMediaContents : " , apiUrl);
@@ -59,7 +55,7 @@ const handleScreenBlock = () => {
 }
 
 const handleMenuBlock = () => {
-  const element_screen = document.querySelector('.screenInfo'); // abc 클래스를 가진 요소 선택
+  const element_screen = document.querySelector('.screenInfo'); 
   const element_menu = document.querySelector('.menuInfo');
 
   
@@ -79,15 +75,17 @@ const handleMenuBlock = () => {
     <div className="mobile-video-player">
       <div className="phone-container">
         <div className="phone">
-          <div className="screen">
+          <div className="screen" draggable="true">
             <div className='videoTop'>
             <p>매장 정보</p>
             <p onClick={handleMenuBlock}>메뉴판</p>
             <p onClick={handleScreenBlock}>영상 목록</p>
             </div>
-            <video id="videoPlayer" className="player" controls loop autoPlay width='100%' height='100%'>
+            <video id="videoPlayer" 
+            className="player" controls loop autoPlay 
+            width='100%' height='100%'
+            data-no-fullscree="true">
               Your browser does not support the video tag.
-              <button>스페샬!</button>
             </video>
           </div>
         </div>

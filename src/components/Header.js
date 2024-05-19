@@ -1,15 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 function Header() {
     const navigate = useNavigate();
     const isLoggedIn = useSelector(state => state.login.isLoggedIn);
     const [username, setUsername] = useState(localStorage.getItem('username'));
     
-    // alert("username : " + username);
-    // alert("isLoggedIn : " + isLoggedIn);
-
     // useEffect를 사용하여 isLoggedIn 상태가 변경될 때마다 username 업데이트
     useEffect(() => {
         if (isLoggedIn) {
@@ -34,7 +31,6 @@ function Header() {
     const handleMoveFileUploadPage = () => {
         navigate('/FileUpload');
     };
-
 
     const handleUserInfo = () => {
         navigate('/UserInfo');

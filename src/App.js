@@ -2,6 +2,7 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import loginStateSlice, { getLoginFailed, getLoginSuccess } from './redux/authReducer';
 import Header from './components/Header';
 import LoginContents from './components/LoginContents';
 import SignUpContents from './components/SignUpContents';
@@ -11,9 +12,36 @@ import RedirectPage from './components/RedirectPage';
 import UserInfo from './components/UserInfo';
 import FileList from './components/FileList';
 import FileDetail from './components/FileDetail';
-
+import { useDispatch, useSelector } from 'react-redux';
 function App() {
-  console.log("App : " , localStorage.getItem('token'));
+  let apiUrl = process.env.REACT_APP_PROD_API_URL;
+  const isLoggedIn = useSelector(state => state.login.isLoggedIn);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    fetch(`${apiUrl}/userInfo`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+    .then(response => {
+      if(response.ok) {
+        dispatch(getLoginSuccess());
+        console.log("App : " , localStorage.getItem('token'));
+        return response.json(); 
+      } else {
+        alert("실패!");
+        dispatch(getLoginFailed());
+
+      }
+    })
+    .then(data => {
+      console.log(data);
+    })
+    
+  }, []);
+
   return (
     <div className="App">
       <Router>
