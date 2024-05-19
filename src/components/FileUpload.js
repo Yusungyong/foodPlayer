@@ -10,12 +10,6 @@ function FileUpload() {
     const [videoFile, setVideoFile] = useState('');
     const [formVideo, setFormVideo] = useState('');
     const [address, setAddress] = useState('');
-    const [score_1, setScore_1] = useState('');
-    const [score_2, setScore_2] = useState('');
-    const [score_3, setScore_3] = useState('');
-    const [score_4, setScore_4] = useState('');
-    const [score_5, setScore_5] = useState('');
-    const [score_6, setScore_6] = useState('');
     const [videoTitle, setVideoTitle] = useState('');
     const username = localStorage.getItem('username');
     const handleFileChange = (e) => {
@@ -35,13 +29,7 @@ function FileUpload() {
         const uploadFileInfo = {
             "videoTitle" : videoTitle ,
             "address" : address ,
-            "userName" : username , 
-            "score1" : score_1 ,
-            "score2" : score_2 ,
-            "score3" : score_3 ,
-            "score4" : score_4 ,
-            "score5" : score_5 ,
-            "score6" : score_6 ,
+            "userName" : username 
         } 
         formData.append("file", formVideo);
         formData.append("fileVO", JSON.stringify(uploadFileInfo));
@@ -90,42 +78,7 @@ function FileUpload() {
 
                     </label>
                 </div>
-                <div className="fileUpload">
-                    <label id="score_1">
-                        <input type="number" id="score_1" min="0" max="5" name="score_1" value={score_1} placeholder='맛 : 0 ~ 5 점' onChange={(e) => setScore_1(e.target.value)} />
 
-                    </label>
-                </div>
-                <div className="fileUpload">
-                    <label id="score_2">
-                        <input type="number" id="score_2" name="score_2" value={score_2} placeholder='비주얼 0 ~ 5 점' onChange={(e) => setScore_2(e.target.value)} />
-
-                    </label>
-                </div>
-                <div className="fileUpload">
-                    <label id="score_3">
-                        <input type="number" id="score_3" name="score_3" value={score_3} placeholder='서비스 0 ~ 5 점' onChange={(e) => setScore_3(e.target.value)} />
-
-                    </label>
-                </div>
-                <div className="fileUpload">
-                    <label id="score_4">
-                        <input type="number" id="score_4" name="score_4" value={score_4} placeholder='접근성 0 ~ 5 점' onChange={(e) => setScore_4(e.target.value)} />
-
-                    </label>
-                </div>
-                <div className="fileUpload">
-                    <label id="score_5">
-                        <input type="number" id="score_5" name="score_5" value={score_5} placeholder='가성비 0 ~ 5 점' onChange={(e) => setScore_5(e.target.value)} />
-
-                    </label>
-                </div>
-                <div className="fileUpload">
-                    <label id="score_6">
-                        <input type="number" id="score_6" name="score_6" value={score_6} placeholder='위생 0 ~ 5 점' onChange={(e) => setScore_6(e.target.value)} />
-
-                    </label>
-                </div>
                 <div className='fileUploadSubmitBtn'>
                     <button onClick={handleSubmit}>파일 업로드</button>
                 </div>
