@@ -82,7 +82,7 @@ const handleMenuBlock = () => {
             <p onClick={handleScreenBlock}>영상 목록</p>
             </div>
             <video id="videoPlayer" 
-            className="player" controls loop autoPlay playsinline webkit-playsinline 
+            className="player" controls loop autoPlay playsinline muted 
             width='100%' height='100%'
             data-no-fullscree="true">
               Your browser does not support the video tag.
