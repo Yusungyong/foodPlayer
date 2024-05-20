@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
-
 function FileList() {
     const navigate = useNavigate();
     let apiUrl = process.env.REACT_APP_PROD_API_URL;
@@ -68,6 +66,30 @@ function FileList() {
         navigate(`/FileDetail/${fileId}`);
     };
     
+    const handleDeleteItem = (event, fileId) => {
+      event.stopPropagation();
+      const confirmed = confirm("정말로 삭제하시겠습니까?");
+      if (confirmed) {
+        fetch(`http://localhost:8080/deleteItem?fileId=${fileId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+          }
+        })
+        .then(response => {
+          if (response.ok) {
+            setFileInfo(prevFileInfo => prevFileInfo.filter(item => item.id !== fileId));
+            console.log(`File with ID ${fileId} deleted successfully.`);
+          } else {
+            console.error('Failed to delete the file:', response.status);
+          }
+        })
+        .catch(error => {
+          console.error('Error deleting the file:', error);
+        });
+      }
+    }
     
     return (
       <div className='fileList'>
@@ -80,7 +102,9 @@ function FileList() {
                 <div>
                   <p>{item.videoTitle}</p>
                   <p>{item.address}</p>
+                  
                 </div>
+                <div className='deleteItem'><p onClick={(event) => handleDeleteItem(event, item.id)}>삭제</p></div>
               </li>
             )) 
             : 

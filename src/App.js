@@ -31,7 +31,6 @@ function App() {
         console.log("App : " , localStorage.getItem('token'));
         return response.json(); 
       } else {
-        alert("실패!");
         dispatch(getLoginFailed());
 
       }

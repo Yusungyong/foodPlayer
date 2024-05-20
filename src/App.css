@@ -335,10 +335,6 @@ div.Header p.logo {
   margin-bottom: 8px;
 }
 
-.menuInfo .main>div,.side>div,.orthers>div{
-  display: flex;
-}
-
 .menuInfo .main>div>p,.side>div>p,.orthers>div>p{
   margin-right: 24px;
   margin-bottom: 2px;
@@ -391,7 +387,7 @@ ul.fileInfo li img{
   display: flex;
   justify-content: center;
 }
-.mainAdd, .sideAdd, .orthersAdd{
+.mainAdd, .sideAdd, .orthersAdd {
   text-align: right;
 }
 .fileDetail input {
@@ -408,6 +404,10 @@ ul.fileInfo li img{
   margin-bottom: 10px;
 }
 
+.deleteItem {
+  text-align: right;
+}
+
 /* 모바일 화면에 대한 스타일 */
 @media (max-width: 768px) {
 
@@ -416,7 +416,9 @@ ul.fileInfo li img{
     display: none;
   }
   
-
+  .videoTop {
+    display: none;
+  }
 
 
 }
